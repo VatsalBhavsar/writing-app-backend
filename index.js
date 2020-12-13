@@ -11,7 +11,7 @@ dotenv.config();
 
 //Connect to DB
 mongoose.connect(
-  "mongodb://localhost:27017/imaginedDb",
+  process.env.DB_CONNECTION_STRING,
   { useUnifiedTopology: true, useNewUrlParser: true },
   () => console.log("Connected to DB")
 );

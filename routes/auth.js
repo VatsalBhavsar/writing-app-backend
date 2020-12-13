@@ -109,15 +109,15 @@ router.post("/login", async (req, res) => {
         .status(400)
         .send({ message: "Username or password is incorrect" });
 
-    const validPassword = await bcrypt.compare(
-      req.body.password,
-      user.password
-    );
-
     if (!user.isAccountVerified)
       return res
         .status(400)
         .send({ message: "Please verify your email address to login" });
+
+    const validPassword = await bcrypt.compare(
+      req.body.password,
+      user.password
+    );
 
     if (!validPassword)
       return res.status(400).send({ message: "Incorrect password" });
